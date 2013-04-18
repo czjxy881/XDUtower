@@ -29,8 +29,8 @@ class message:
        s=s.title.encode('utf-8') 
        s=s.replace(' ','')
        s=re.sub(r'<.*?br.*?>','-',s)
-       s=re.sub('(图)','',s)
-       s=re.sub('（视频）','',s)
+       s=re.sub('.图.','',s)
+       s=re.sub('.视频.','',s)
        return s
     def geturl(self,urll):
         a=feedparser.parse(urll)
@@ -148,6 +148,6 @@ if __name__=='__main__':
     
     a=message()
     for i in range(1,12):
-        print a.getmsg(i)
+        print a.getmsg(i).decode('utf-8').encode('cp936')
 
 

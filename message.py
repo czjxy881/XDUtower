@@ -130,11 +130,11 @@ class message:
         cb = self.getHtml('http://www.cnbeta.com')
         reg = r'<dt class="topic" ><a href=".+"  target="_blank"><strong>(.+)</strong></a></dt>'
         result = re.compile(reg).findall(cb)
-        a = 'Cnbeta News:'
+        a = 'Cnbeta新闻:'
         for item in result[0: 3]:
             item = item.decode('GBK').encode('utf-8')
             a += item + ';'
-        a += 'Go to:http://www.cnbeta.com'
+        a += '详情见:http://www.cnbeta.com'
         return a
         
     def getmsg(self, message):

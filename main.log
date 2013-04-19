@@ -25022,3 +25022,11 @@
 2013-04-19 11:20:53,306 128  Exceeded 30 redirects.
 2013-04-19 11:20:53,459 128  Exceeded 30 redirects.
 2013-04-19 11:21:12,423 133  [Errno 10053] An established connection was aborted by the software in your host machine
+2013-04-19 22:56:11,505 134  global name 'winsound' is not defined
+2013-04-19 22:57:27,127 135  global name 'winsound' is not defined
+2013-04-19 22:57:55,785 135  global name 'winsound' is not defined
+2013-04-19 22:58:01,016 135  global name 'winsound' is not defined
+2013-04-19 22:58:06,294 135  global name 'winsound' is not defined
+2013-04-19 22:58:15,359 135  global name 'winsound' is not defined
+2013-04-19 23:26:09,000 128  Exceeded 30 redirects.
+2013-04-19 23:28:32,962 128  Exceeded 30 redirects.

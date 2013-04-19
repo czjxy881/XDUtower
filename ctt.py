@@ -45,5 +45,7 @@ def uptime():
    t=getBeijinTime()
    if t==None:return 0
    return changetime(t)
-if __name__=="__main__":
+
+
+if __name__=='__main__':
     uptime()

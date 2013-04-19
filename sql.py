@@ -47,27 +47,30 @@ class Sql:
     def update(self):
         if self.con==0:self.__init__()
         m=message.message()
-        dic=['国内新闻','科技趣闻','环球视野','军事汇总','娱乐八卦','音乐资讯','科技要闻','天气','教务处','NBA篮球','农历日历']
-        try:
+        dic=['国内新闻','科技趣闻','环球视野','军事汇总','娱乐八卦','音乐资讯','科技要闻','天气','农历日历','NBA篮球','教务处']
+        if 1:
+        #try:
          for i in range(1,12):
             print i
             s=m.getmsg(i)
             #self.cur.execute("insert into message (ans,name) values('%s','%s')"%(s,dic[i-1]))
             self.cur.execute("update message set ans='%s' where name=='%s'"%(s,dic[i-1]))
          return 1
-        except:
-            self.__del__()
-            return 0
+       # except:
+          #  self.__del__()
+         #   return 0
     def find(self,name):
+        if self.con==0:self.__init__()
         self.cur.execute("select * from message where name Like '%%%s%%'"%(name))
         t=self.cur.fetchone()
         return t[1] if t!=None else 0
 
 if __name__=="__main__":
     a=Sql()
-    
+    del a
+    a=Sql()
     print a.update()
     
-    print a.find('天气')
+   # print a.find('天气')
     #del a
     #a.build('well','3.txt');

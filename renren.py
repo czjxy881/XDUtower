@@ -171,14 +171,14 @@ class Renren():
             result = []
         return result
     #删除通知
-    def removeNotification(self, notify_id):
-        return self.session.get('http://notify.renren.com/rmessage/remove?nl=' + str(notify_id))
+    def removeNotification(self, notify_id,tp):
+        return self.session.get('http://notify.renren.com/rmessage/remove?nl=%s&uid=%s&type=%s'%(str(notify_id),self.pid,tp))
     
     def send(self,url,data):
         data.update(self.token)
         try:
             r=self.session.post(url,data=data)
-          #  print r.text
+           # print r.text
             x=r.json()
             if (x.has_key('type') and x['type']==6) or x.has_key('replyList'):return x
             elif x.has_key('code') and x['code']==0:
@@ -191,20 +191,22 @@ class Renren():
             self.logger.error(e)      
             return 0
     #获得一篇评论  
-    def getDoingComments(self, owner_id, doing_id):
+    def getDoingComments(self, owner_id, doing_id,t):
         url = 'http://status.renren.com/feedcommentretrieve.do'
         r = self.send(url,{
             'doingId': doing_id,
             'source': doing_id,
             'owner': owner_id,
-            't':0
+            't':t
         })
+       # print r
         return r['replyList']
     #获得一条评论
-    def getCommentById(self, owner_id, doing_id, comment_id):
-        comments = self.getDoingComments(owner_id, doing_id)
+    def getCommentById(self, owner_id, doing_id, comment_id,t):
+        comments = self.getDoingComments(owner_id, doing_id,t)
         comment = filter(lambda comment: comment['id'] == int(comment_id), comments)
         return comment[0] if comment else None
+    
     #发表公共主页状态
     def publish(self,content):
         # url='http://shell.renren.com/'+str(self.data['hostid'])+'/status'
@@ -330,7 +332,7 @@ class Renren():
         url='http://blog.renren.com/PostComment.do'
         if data.has_key('anchor'):cid=data['anchor']
         else :cid=data['comment_id']
-        ans=self.getCommentById(data['owner'],data['source'],cid)['replyContent']
+        ans=self.getCommentById(data['owner'],data['source'],cid,0)['replyContent']
         ans=self.reply(ans)
         d={
            'comment':'reply %s:%s'%(data['from_name'].encode('utf-8'),ans),
@@ -349,7 +351,7 @@ class Renren():
         d={
            'c':'塔塔转发:',
            'fwdId':data[u'source'],
-           'fwdOwner':data[u'from'],
+           'fwdOwner':data[u'owner'],
            'level':'',
            'raw':'塔塔转发:',
            'statID':''
@@ -366,20 +368,24 @@ class Renren():
     def Respond(self,x):
       #  if 1:
       try:
-       # self.removeNotification(x['notify_id'])
+     #   print x
+      #  print self.removeNotification(x['notify_id']).text
        # return
         f=0
         if x['type']=='16':
            # print (x['reply_content'])
             ans=self.reply(x['reply_content'],x)
-           # print ans
+            #print ans
             f=self.addStatuesComment(ans,x)
+           # print f
         elif x['type']=='169':f=1
         elif x['type']=='14':  
             ans=self.reply(x['msg_context'],x)
             f=self.addGossipcomment(ans,x)         
         elif x['type']=='196':
-            ans=self.reply(x['doing_content'],x)
+            if x['replied_id']!=x['from']:me=self.getCommentById(x['owner'], x['source'], x['replied_id'],3)['replyContent']
+            else: me=x['doing_content']
+            ans=self.reply(me,x)
             f=self.addStatuesComment(ans,x)           
         elif x['type']=='167':
             ans=self.reply(x['doing_content'],x)
@@ -390,12 +396,13 @@ class Renren():
             f=self.addShareComment(ans,x)
         elif x['type']=='172' or x['type']=='17':
             f=self.addTextComment(x)
-        if f:self.removeNotification(x['notify_id'])
+        if f:self.removeNotification(x['notify_id'],x['type'])
+        else:raise
       except Exception,e:
         with open('respond.txt','a') as f:
-          print x
+       #   print x
           f.write(str(x)+'\n')
-          self.removeNotification(x['notify_id'])
+          self.removeNotification(x['notify_id'],x['type'])
         self.logger.error(e)
     
     def reply(self,mes,x=''):
@@ -426,15 +433,17 @@ class Renren():
 
      
 if __name__=='__main__':
-
+    #s=Renren("czjxy8898@gmail.com","asdf1234",'601654416')
+    s=Renren('rz002@foxmail.com', "lsy2010407637", '256952552')
+   # s=Renren("2624908203@qq.com","asdf1234",'601700718')
     s.check()
    # d={'post':'{"id":15651751722,"owner":258288397}'}
     #print s.send('http://share.renren.com/share/ajax.do',d)
     
-    print s.reply('今天天气怎么样'.decode('utf-8'))
+   # print s.reply('今天天气怎么样'.decode('utf-8'))
     
     #print s.addShare('http://blog.renren.com/share/258288397/15651751722','good')
-   # print s.getCommentById('283902768', '15651751722', '42276183730')
+    #print s.getCommentById('283902768', '4714933905', '468021034',3)['replyContent']
     #for i in range(0,1000):
     #  y=s.session.get('http://notify.renren.com/rmessage/get?getbybigtype=1&bigtype=1&limit=100&begin=0&view=%d'%i).text
     #  if y!='[]':
@@ -452,7 +461,7 @@ if __name__=='__main__':
         while i!=len(tt):
            try:
              print tt[i]
-             print s.Respond(tt[i])
+             s.Respond(tt[i])
            except Exception,e:
              print Exception,e 
            i+=1

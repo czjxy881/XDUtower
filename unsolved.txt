@@ -1,0 +1,17 @@
+{u'doing_content': u'\u4e0a\u5927\u5b66\uff0c\u5230\u5e95\u5b66\u4e60\u91cd\u8981\uff0c\u8fd8\u662f\u5b9e\u8df5\u91cd\u8981\uff1f',
+ u'from_name': u'\u8d3e\u65b0\u79b9\u2299\ufe4f\u2299'
+, u'from': u'283902768', u'share_type': u'1', u'notify_
+id': u'42276183730', u'msg_context': u'', u'source': u'15651751722', u'share_id'
+: u'15651751722', u'time': u'1366127247', u'owner': u'258288397', u'type': u'169
+
+
+{u'feed_stype': u'505', u'from_pic': u'http://hdn.xnimg.cn/photos/hdn321/2011062
+8/1800/h_tiny_3eht_14cc0000971e2f75.jpg', u'doing_content': u'\u6269\u6563 \u8f6c\u81ea\u5468\u5b50\u4e7e:\u4e00\u5361\u901a\u5728\u7af9\u56ed\u9910\u5385\u79bb\u5bb6\u51fa\u8d70\u4e86\u3002\u7ecf\u6d4e\u7ba1\u7406\u5b66\u9662\u5b8b\u6d77\u6770\uff0c\u89c1\u5230\u5b83\u7684\u4e00\u5b9a\u8981\u7559\u4f4f\u5b83\u7ed9\u6211\u6253\u7535\u8bdd18717338750\u621618655830156\u3002\u4f60\u4e00\u5b9a\u8981\u56de\u6765\u554a(\u54ed)(\u54ed)\u4f60\u7684\u4e3b\u4eba\u9700\u8981\u4f60(\u54ed)(\u54ed)@\u897f\u5b89\u7535\u5b50\u79d1\u6280\u5927\u5b66\u7ecf\u7ba1\u9662(601275177) @\u897f\u7535\u5927\u9ec4(373312641) @\u897f\u7535\u5c0f\u5c0f(376280570) @\u897f\u7535\u5c0f\u6d6a(457922152) @\u897f\u7535\u7ecf\u6d4e\u7ba1\u7406\u5b66\u9662\u56e2\u59d4(601001460) @\u897f\u7535\u4e61(450934818) @\u5b66\u751f\u6c47(458525833) @\u897f\u5b89\u7535\u5b50\u79d1\u5927\u5b66\u751f\u4f1a(600005117) '
+, u'from_name': u'\u8d3e\u65b0\u79b9\u2299\ufe4f\u2299', u'from': u'283902768
+', u'feed_actor': u'457922152', u'notify_id': u'42276212990', u'replied_id': u'1
+4833110776', u'msg_context': u'', u'doing_id': u'4710093403', u'source': u'47100
+93403', u'time': u'1366127335', u'owner': u'457922152', u'type': u'196'}
+
+
+
+"sendcomment":true,"action":"add","auth":99,"link":"http://blog.renren.com/GetEntry.do?id=901644648&owner=327831822","type":"1","shareId":"15654684874","shareid":"15654684874","shareUserId":"407293911","shareowner":"407293911","title":"如何用Python写一个贪吃蛇AI","pic":"","fromno":"327831822","fromname":"邱嘉和","fromuniv":"1010","fromShareId":"15654684874","fromShareOwner":"407293911","albumid":"901644648","currenUserTinyurl":"http://head.xiaonei.com/photos/0/0/page-tiny.png","preForwardComment":"//贠泽文:码了//西电GDG://张宝智.py:Life is short，use python.//刘森辕.py: //董超.py:再转一下 思考问题的过程挺赞的//毛卫勇Rexdf.py://郦橙://苑巍://姚培森.erl:俄罗斯方块只要70行，图形界面。。","forwardComment":"","summary":"前言这两天在网上看到一张让人涨姿势的图片，图片中展示的是贪吃蛇游戏， 估计大部分人都玩过。但如果仅仅是贪吃蛇游戏，那么它就没有什么让人涨姿势的地方了。 问题的关键在于，图片中的贪吃蛇真的很贪吃XD，它把矩形中出现的食物吃了个遍， 然后...","noteId":"901644648","body":"","from":"0101010403","tags":[]

@@ -12,27 +12,30 @@ university:China,Xidian University
 
 import renren,ctt,sql
 from remind import *
-import datetime,winsound,os,threading,random,sys,logging
+import datetime,winsound,os,threading,random,sys,logging,ctypes
 import time
 def error():
+    global tee
     t=0
     while 1:
        winsound.Beep(3820,200)
        time.sleep(0.1)
        t+=0.3
        if t>10: break
-    #os.execl('python','python',*sys.argv) 
+    #os.execl('python','python',*sys.argv)
+    ctypes.pythonapi.PyThreadState_SetAsyncExc(tee.ident, ctypes.py_object(tee))
     os.system("cmd /c python main.py")
     exit()
 def respond():
    try:
     t=1
+    #ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
+    ren=renren.Renren("czjxy8898@gmail.com","asdf1234",'601654416')
     while 1:
         ren.check()
         tt=ren.getNotifications()
-        time.sleep(t)
         i=0
-        #print i
+        #print len(tt)
         while i!=len(tt):
            ren.Respond(tt[i])
            i+=1
@@ -41,6 +44,7 @@ def respond():
         if i!=0:
             if t>5:t=5
             elif t>=1:t-=1;
+        time.sleep(t)
    except:
     tee=threading.Thread(target=respond)
     tee.setDaemon(True)
@@ -61,6 +65,8 @@ def que(m):
 
 
 def tt():
+    #ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
+    ren=renren.Renren("czjxy8898@gmail.com","asdf1234",'601654416')
     winsound.Beep(1500,200)
     while 1:
         ren.check()
@@ -107,6 +113,7 @@ if __name__=='__main__':
 
     meng=sql.Sql()
     try:
+    # ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
      #ren.check()
     #for i in range(0,24):
     #    ren.publish(que(i))
@@ -115,7 +122,12 @@ if __name__=='__main__':
      tee=threading.Thread(target=respond)
      tee.setDaemon(True)
      tee.start()
-     #time.sleep(2)
+   #  print tee.ident
+   #  res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tee.ident, ctypes.py_object(tee))
+    # print res
+   #  print tee.isAlive()
+    # time.sleep(2)
+    # print tee.isAlive()
      tt()
     except Exception,e:
         logger.error(e)

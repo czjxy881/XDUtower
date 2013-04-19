@@ -45,7 +45,8 @@ def respond():
             if t>5:t=5
             elif t>=1:t-=1;
         time.sleep(t)
-   except:
+   except Exception,e:
+    print e
     tee=threading.Thread(target=respond)
     tee.setDaemon(True)
     tee.start() 

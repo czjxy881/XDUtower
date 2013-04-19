@@ -310,6 +310,7 @@ class Renren():
             'id': data['owner'], 
             'only_to_me': 1,
             'cc': data['from'],
+            'mode': 'conversation',
             'body': comment,
             'ref':'http://gossip.renren.com/getgossiplist.do'
         }
@@ -381,7 +382,7 @@ class Renren():
         elif x['type']=='169':f=1
         elif x['type']=='14':  
             ans=self.reply(x['msg_context'],x)
-            f=self.addGossipcomment(ans,x)         
+            f=self.addGossipComment(ans,x)         
         elif x['type']=='196':
             if x['replied_id']!=x['from']:me=self.getCommentById(x['owner'], x['source'], x['replied_id'],3)['replyContent']
             else: me=x['doing_content']
@@ -412,9 +413,10 @@ class Renren():
             self.hj=xhj.Xhj()
         ans=''
         if u'转发' in mes or u'扩散' in mes:
-            self.resend(x)
-            ans+='已转发'
-            return ans
+            if x['type']!='14':
+                self.resend(x)
+                ans+='已转发'
+                return ans
         if u'捡' in mes or u'拾' in mes:
             print 'jian1'
         if u'丢' in mes or u'掉' in mes:

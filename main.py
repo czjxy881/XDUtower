@@ -30,8 +30,8 @@ def error():
 def respond():
    #try:
     t=1
-    ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
-    #ren=renren.Renren("czjxy8898@gmail.com","asdf1234",'601654416')
+    #ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
+    ren=renren.Renren("czjxy8898@gmail.com","asdf1234",'601654416')
     while 1:
         ren.check()
         tt=ren.getNotifications()
@@ -68,8 +68,8 @@ def que(m):
 
 
 def tt():
-    ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
-    #ren=renren.Renren("czjxy8898@gmail.com","asdf1234",'601654416')
+    #ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
+    ren=renren.Renren("czjxy8898@gmail.com","asdf1234",'601654416')
     #winsound.Beep(1500,200)
     while 1:
         ren.check()

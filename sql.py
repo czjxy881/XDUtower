@@ -55,6 +55,7 @@ class Sql:
             s=m.getmsg(i)
             #self.cur.execute("insert into message (ans,name) values('%s','%s')"%(s,dic[i-1]))
             self.cur.execute("update message set ans='%s' where name=='%s'"%(s,dic[i-1]))
+          self.con.commit()
          return 1
        # except:
           #  self.__del__()

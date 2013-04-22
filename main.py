@@ -10,7 +10,7 @@ university:China,Xidian University
 '''
 
 
-import renren,ctt,sql
+import renren,sql
 from remind import *
 import datetime,os,threading,random,sys,logging,ctypes
 #import winsound
@@ -70,12 +70,10 @@ def que(m):
 def tt():
     #ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
     ren=renren.Renren("czjxy8898@gmail.com","asdf1234",'601654416')
-    #winsound.Beep(1500,200)
     while 1:
         ren.check()
         rem=remind()
         t = time.localtime()
-        ctt.uptime()
         try:
           if meng.update()==0:meng.update()
         except:
@@ -89,12 +87,10 @@ def tt():
             t = time.localtime()
             if t.tm_min==0: break;
             time.sleep(1)
-        #winsound.Beep(1500,200)
         content='塔塔报时:现在时间  '+time.strftime('%Y-%m-%d %H:%M:00',t)+"  "
         content=(content+'   '+rem)+ss
         ren.publish(content)
         time.sleep(1800)
-        #winsound.Beep(1500,200)
         if random.randint(0,10)==0:
             ren.check()
             d=ren.getrecentcomment()
@@ -102,7 +98,6 @@ def tt():
             elif d>48:s=meng.well()
             else:s=""
             if s!="": ren.publish(s)
-        #winsound.Beep(2500,200)
         time.sleep(1600)
     
 
@@ -115,24 +110,10 @@ if __name__=='__main__':
     logger.setLevel(logging.ERROR)
 
     meng=sql.Sql()
-    #try:
     # ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
-     #ren.check()
-    #for i in range(0,24):
-    #    ren.publish(que(i))
-    #    time.sleep(1)
-   # respond()
     tee=threading.Thread(target=respond)
     tee.setDaemon(True)
     tee.start()
-    #while 1 :
-    #    pass
-   # print tee.ident
-   # res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tee.ident, ctypes.py_object(tee))
-   #  print res
-   # print tee.isAlive()
-   #  time.sleep(2)
-   #  print tee.isAlive()
     tt()
     #except Exception,e:
     #    logger.error(e)

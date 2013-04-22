@@ -476,6 +476,8 @@ class Renren():
         l = jieba.cut(mes)  # ,cut_all=True)
         # print l
         for i in l:
+            if len(i) == 1:
+                continue
             t = self.sq.find(i)
             if t != 0:
                 return t

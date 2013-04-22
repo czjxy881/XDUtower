@@ -79,7 +79,7 @@ def que(m):
         return meng.find('NBA')
     elif m == 12 or m == 16 or m == 23:
         return meng.find('趣闻')
-    elif m == 10 or m == 17 or m == 21:
+    elif m == 10 or m == 21:
         return meng.find('军事')
     elif m == 14:
         return meng.find('娱乐')

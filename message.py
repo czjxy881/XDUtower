@@ -56,7 +56,7 @@ class message:
             return''
 
     def getHtml(self, url):
-        page = urllib3.urlopen(url, timeout = 4)
+        page = urllib2.urlopen(url, timeout = 4)
         html = page.read()
         page.close()
         # print html
@@ -180,9 +180,17 @@ class message:
             return self.jwcnews()
         if message == 12:
             return self.cnbetanews()
+        if message == 13:
+            urll = 'http://www.zhihu.com/rss'
+            a = self.geturl(urll)
+            return '知乎精选：'+ a + '详情见:http://www.zhihujingxuan.com'
 
 if __name__ == '__main__':
 
     a = message()
-    for i in range(1, 13):
-        print a.getmsg(i)
+    for i in range(1, 14):
+        try:
+            print a.getmsg(i)
+        except:
+            continue
+

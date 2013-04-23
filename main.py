@@ -73,7 +73,7 @@ def que(m):
         return meng.find('天气')
     elif m == 8 or m == 13:
         return meng.find('国内')
-    elif m == 9 or m == 11 or m == 22:
+    elif m == 9 or m == 11:
         return meng.find('NBA')
     elif m == 12 or m == 16 or m == 23:
         return meng.find('趣闻')
@@ -91,6 +91,8 @@ def que(m):
         return meng.find('教务处')
     elif m == 20:
         return meng.find('环球')
+    elif m == 22:
+        return meng.find('知乎')
 
 
 def tt():
@@ -100,10 +102,9 @@ def tt():
         rem = remind()
         t = time.localtime()
         try:
-            if meng.update() == 0:
-                meng.update()
-        except:
             meng.update()
+        except Exception, e:
+            print "update error"
         try:
             ss = que(t.tm_hour)
         except:

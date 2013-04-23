@@ -63,18 +63,26 @@ class Sql:
         if self.con == 0:
             self.__init__()
         m = message.message()
-        dic = ['国内新闻', '科技趣闻', '环球视野', '军事汇总', '娱乐八卦', '音乐资讯', '科技要闻', '天气', '农历日历', 'NBA篮球', '教务处', 'Cnbeta']
-        try:
-            for i in range(1, 13):
-                print i
+        dic = ['国内新闻', '科技趣闻', '环球视野', '军事汇总', '娱乐八卦', '音乐资讯', '科技要闻', '天气', '农历日历', 'NBA篮球', '教务处', 'Cnbeta', '知乎精选']
+        #try:
+        for i in range(1, 14):
+            print "%s update..." % dic[i-1]
+            try:
                 s = m.getmsg(i)
-                # self.cur.execute("insert into message (ans,name) values('%s','%s')"%(s,dic[i-1]))
+            except Exception, e:
+                print "%s : get new message error. %s" % (dic[i-1], e)
+                continue
+            self.cur.execute("select name from message where name = '%s'" % dic[i-1])
+            if self.cur.fetchone() == None:
+                self.cur.execute("insert into message (ans,name) values('%s','%s')"%(s,dic[i-1]))
+            else:
                 self.cur.execute("update message set ans='%s' where name=='%s'" % (s, dic[i-1]))
-            self.con.commit()
-            return 1
-        except:
-            self.__del__()
-            return 0
+        self.con.commit()
+        return 1
+        #except  Exception,e:
+        #    print e
+        #    self.__del__()
+        #    return 0
 
     def find(self, name):
         if self.con == 0:

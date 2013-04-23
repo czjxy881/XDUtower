@@ -486,9 +486,6 @@ class Renren():
 
 
 if __name__ == '__main__':
-    s = Renren("czjxy8898@gmail.com", "asdf1234", '601654416')
-    # s=Renren('rz002@foxmail.com', "lsy2010407637", '256952552')
-    # s=Renren("2624908203@qq.com","asdf1234",'601700718')
 
     s.check()
    # d={'post':'{"id":15651751722,"owner":258288397}'}

@@ -72,7 +72,7 @@ class Sql:
                 self.cur.execute("update message set ans='%s' where name=='%s'" % (s, dic[i-1]))
             self.con.commit()
             return 1
-         except:
+        except:
             self.__del__()
             return 0
 

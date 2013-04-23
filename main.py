@@ -1,4 +1,4 @@
-﻿# code:utf-8
+# -*-coding:utf=8 -*-
 '''
 ======================================
 author:jxy
@@ -70,7 +70,7 @@ def respond():
 
 def que(m):
     if 0 <= m < 6:
-        return '格言欣赏:'+meng.poem()
+        return '格言欣赏:' + meng.poem()
     elif 5 < m < 8:
         return meng.find('天气')
     elif m == 8 or m == 13:
@@ -96,7 +96,7 @@ def que(m):
 
 
 def tt():
-    ren=renren.Renren(account[0], account[1], account[2])
+    ren = renren.Renren(account[0], account[1], account[2])
     while 1:
         ren.check()
         rem = remind()
@@ -135,13 +135,20 @@ def tt():
 
 
 if __name__ == '__main__':
+    account = []
     if len(sys.argv) == 1:
-        account = ("czjxy8898@gmail.com", "asdf1234", '601654416')
+        accountFile = open('account/xdutower.txt', 'r')
+        for i in range(0, 3):
+            account.append(accountFile.readline().strip())
+        # account = ("czjxy8898@gmail.com", "asdf1234", '601654416')
     elif sys.argv[1] == 'debug':
-        account = ("2624908203@qq.com","asdf1234","601700718")
-    else :
+        # account = ("2624908203@qq.com","asdf1234","601700718")
+        accountFile = open('account/xiaoxiaoxdu.txt', 'r')
+        for i in range(0, 3):
+            account.append(accountFile.readline().strip())
+    else:
         print('Error Args')
-        exit(1)    
+        exit(1)
     logger = logging.getLogger()
     handler = logging.FileHandler("main.log")
     formatter = logging.Formatter('%(asctime)s %(lineno)d  %(message)s')
@@ -150,7 +157,6 @@ if __name__ == '__main__':
     logger.setLevel(logging.ERROR)
 
     meng = sql.Sql()
-    # ren=renren.Renren("2624908203@qq.com","asdf1234",'601700718')
     tee = threading.Thread(target=respond)
     tee.setDaemon(True)
     tee.start()

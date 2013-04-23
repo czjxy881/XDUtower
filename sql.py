@@ -64,8 +64,7 @@ class Sql:
             self.__init__()
         m = message.message()
         dic = ['国内新闻', '科技趣闻', '环球视野', '军事汇总', '娱乐八卦', '音乐资讯', '科技要闻', '天气', '农历日历', 'NBA篮球', '教务处', 'Cnbeta']
-        if 1:
-        # try:
+        try:
             for i in range(1, 13):
                 print i
                 s = m.getmsg(i)
@@ -73,9 +72,9 @@ class Sql:
                 self.cur.execute("update message set ans='%s' where name=='%s'" % (s, dic[i-1]))
             self.con.commit()
             return 1
-         # except:
-            #  self.__del__()
-            #   return 0
+         except:
+            self.__del__()
+            return 0
 
     def find(self, name):
         if self.con == 0:

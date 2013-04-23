@@ -3,14 +3,14 @@
 import feedparser
 import sys
 import re
-import urllib
+import urllib2
 import time
 
 
 class Rili:
 
     def a(self):
-        page = urllib.urlopen('http://www.nongli.com/item4/index.asp')
+        page = urllib2.urlopen('http://www.nongli.com/item4/index.asp')
         html = page.read()
         # print html
         reg = r'<td width="74%" bgcolor="#FFFFFF"><B>(.*?)</B></td>'
@@ -56,7 +56,7 @@ class message:
             return''
 
     def getHtml(self, url):
-        page = urllib.urlopen(url)
+        page = urllib3.urlopen(url, timeout = 4)
         html = page.read()
         page.close()
         # print html
@@ -185,4 +185,4 @@ if __name__ == '__main__':
 
     a = message()
     for i in range(1, 13):
-        print a.getmsg(i).decode('utf-8').encode('cp936')
+        print a.getmsg(i)

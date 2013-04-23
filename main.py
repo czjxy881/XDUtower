@@ -20,7 +20,6 @@ import random
 import sys
 import logging
 import ctypes
-# import winsound
 import time
 
 
@@ -28,7 +27,6 @@ def error():
     global tee
     t = 0
     while 1:
-    #   winsound.Beep(3820,200)
         time.sleep(0.1)
         t += 0.3
         if t > 10:
@@ -140,9 +138,7 @@ if __name__ == '__main__':
         accountFile = open('account/xdutower.txt', 'r')
         for i in range(0, 3):
             account.append(accountFile.readline().strip())
-        # account = ("czjxy8898@gmail.com", "asdf1234", '601654416')
     elif sys.argv[1] == 'debug':
-        # account = ("2624908203@qq.com","asdf1234","601700718")
         accountFile = open('account/xiaoxiaoxdu.txt', 'r')
         for i in range(0, 3):
             account.append(accountFile.readline().strip())

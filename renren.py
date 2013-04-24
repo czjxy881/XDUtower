@@ -211,21 +211,23 @@ class Renren():
 
     def send(self, url, data):
         data.update(self.token)
-        try:
-            r = self.session.post(url, data=data)
-           # print r.text
-            x = r.json()
-            if (x.has_key('type') and x['type'] == 6) or x.has_key('replyList'):
-                return x
-            elif x.has_key('code') and x['code'] == 0:
-                return 1
-            else:
-                print 'error:'+x['msg']
-                return 0
-        except Exception, e:
-            print Exception, e
-            self.logger.error(e)
-            return 0
+        for i in range(0, 5):
+            try:
+                r = self.session.post(url, data=data)
+               # print r.text
+                x = r.json()
+                if (x.has_key('type') and x['type'] == 6) or x.has_key('replyList'):
+                    return x
+                elif x.has_key('code') and x['code'] == 0:
+                    return 1
+                else:
+                    print 'error:'+x['msg']
+                    return 0
+            except Exception, e:
+                print Exception, e
+                self.logger.error(e)
+                continue
+        return 0
     # 获得一篇评论
 
     def getDoingComments(self, owner_id, doing_id, t):

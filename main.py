@@ -158,6 +158,8 @@ if __name__ == '__main__':
     tee.setDaemon(True)
     tee.start()
     tt()
+    #while 1:
+    #    sleep(100)
     # except Exception,e:
     #    logger.error(e)
     #    error()

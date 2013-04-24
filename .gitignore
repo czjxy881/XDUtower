@@ -3,3 +3,4 @@
 cookie_*
 *.jpg
 /account/
+tower.db

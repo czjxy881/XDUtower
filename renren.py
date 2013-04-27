@@ -476,7 +476,7 @@ class Renren():
                     return cityweather.findcity(i.encode('utf-8'))
         #print "city find fail"
         for i in l:
-            print i
+            #print i
             if len(i) == 1:
                 continue
             t = self.sq.find(i)

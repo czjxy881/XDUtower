@@ -20,7 +20,7 @@ def findname(encoded_args):
 
 
 def findurl(raw_citycode, encoded_args):
-    print "ok"
+    #print "ok"
     for i in range(1000):
         try:
             response = urllib2.urlopen('http://tianqi.2345.com/t/q.php', encoded_args)
@@ -30,7 +30,7 @@ def findurl(raw_citycode, encoded_args):
             break
         except IndexError:
             continue
-    print new_url
+    #print new_url
     my_header = {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         'Accept-Charset': 'UTF-8,*;q=0.5',
@@ -41,7 +41,7 @@ def findurl(raw_citycode, encoded_args):
         try:
             request = urllib2.Request(url='http://tianqi.2345.com' + new_url[0].decode('gb2312', 'ignore').encode('utf-8'), headers=my_header)
             response = urllib2.urlopen(request)
-            f = open('k.html','w')
+            #f = open('k.html','w')
             #f.write(response.read())
             regs = re.compile(r'2345天气预报最新提示，(.+)（分享自 @2345天气预报）'.decode('utf-8').encode('gbk'))
             result = regs.findall(response.read())

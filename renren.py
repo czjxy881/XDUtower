@@ -18,7 +18,7 @@ import xhj
 import time
 import jieba
 import sql
-
+import cityweather
 
 class Renren():
 
@@ -469,12 +469,17 @@ class Renren():
                 self.resend(x)
                 ans += '已转发'
                 return ans
-        if u'捡' in mes or u'拾' in mes:
-            print 'jian1'
-        if u'丢' in mes or u'掉' in mes:
-            print 'shi2'
+        #if u'捡' in mes or u'拾' in mes:
+        #    print 'jian1'
+        #if u'丢' in mes or u'掉' in mes:
+        #    print 'shi2'
         l = jieba.cut(mes)  # ,cut_all=True)
         # print l
+    if findcity(encoded_args):
+        if u'天气' in l:
+            for i in l:
+                if len(i) >= 1 and self.sq.findcity(i):
+                    return  cityweather.findcity(i) 
         for i in l:
             if len(i) == 1:
                 continue

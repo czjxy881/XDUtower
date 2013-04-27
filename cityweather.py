@@ -21,7 +21,7 @@ def findname(encoded_args):
 
 def findurl(raw_citycode, encoded_args):
     print "ok"
-    for i in range(10):
+    for i in range(1000):
         try:
             response = urllib2.urlopen('http://tianqi.2345.com/t/q.php', encoded_args)
             reg = r'<dl><dt><a href="(\S+)" title="%s天气预报">' % raw_citycode
@@ -37,16 +37,15 @@ def findurl(raw_citycode, encoded_args):
         'Accept-Language': 'zh-CN,zh;q=0.8',
         'User-Agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.22 (KHTML, like Gecko) Ubuntu Chromium/25.0.1364.160 Chrome/25.0.1364.160 Safari/537.22'
     }
-    for i in range(100):
+    for i in range(1000):
         try:
-            request = urllib2.Request(url='http://tianqi.2345.com' + new_url[
-                                      0].decode('gb2312', 'ignore').encode('utf-8'), headers=my_header)
+            request = urllib2.Request(url='http://tianqi.2345.com' + new_url[0].decode('gb2312', 'ignore').encode('utf-8'), headers=my_header)
             response = urllib2.urlopen(request)
             f = open('k.html','w')
-            f.write(response.read())
-            regs = re.compile(r'2345天气预报最新提示，(.+)（分享自 @2345天气预报）'.decode('utf-8').encode('gb2312'))
+            #f.write(response.read())
+            regs = re.compile(r'2345天气预报最新提示，(.+)（分享自 @2345天气预报）'.decode('utf-8').encode('gbk'))
             result = regs.findall(response.read())
-            return result[0].decode('gb2312', 'ignore').encode('utf-8')
+            return result[0].decode('gbk', 'ignore').encode('utf-8')
         except IndexError:
             continue
     return "查询失败"
@@ -61,5 +60,9 @@ def findcity(name):
     return findname(encoded_args)
 
 if __name__ == "__main__":
-   #name = sys.argv[1]
-   print findcity('上海') 
+   name = sys.argv[1]
+   print findcity(name)
+   #f = open('k.html', 'r')
+   #regs = re.compile(r'2345天气预报最新提示，(.+)（分享自 @2345天气预报）'.decode('utf-8').encode('gbk'))
+   #result = regs.findall(f.read())
+   #print result[0].decode('gbk', 'ignore').encode('utf-8')

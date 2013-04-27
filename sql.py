@@ -94,8 +94,9 @@ class Sql:
     def findcity(self, cityname):
         if self.con == 0:
             self.__init__()
-        self.cur.execute("select city form citydb where city='%s'" % cityname)
+        self.cur.execute("select city from citydb where city='%s'" % cityname)
         result = self.cur.fetchone()
+        #print "db: "+ result
         if result == None:
             return False
         else:

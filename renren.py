@@ -18,6 +18,7 @@ import xhj
 import time
 import jieba
 import sql
+import cityweather
 
 
 class Renren():
@@ -416,18 +417,11 @@ class Renren():
     # 整体调度
 
     def Respond(self, x):
-        #  if 1:
         try:
-       #   print x
-        #  print self.removeNotification(x['notify_id']).text
-        # return
             f = 0
             if x['type'] == '16':
-           # print (x['reply_content'])
                 ans = self.reply(x['reply_content'], x)
-                # print ans
                 f = self.addStatuesComment(ans, x)
-           # print f
             elif x['type'] == '169':
                 f = 1
             elif x['type'] == '14':
@@ -455,7 +449,6 @@ class Renren():
                 raise
         except Exception, e:
             with open('respond.txt', 'a') as f:
-        #   print x
                 f.write(str(x)+'\n')
                 self.removeNotification(x['notify_id'], x['type'])
             self.logger.error(e)
@@ -471,18 +464,28 @@ class Renren():
                 self.resend(x)
                 ans += '已转发'
                 return ans
-        if u'捡' in mes or u'拾' in mes:
-            print 'jian1'
-        if u'丢' in mes or u'掉' in mes:
-            print 'shi2'
-        l = jieba.cut(mes)
+        # if u'捡' in mes or u'拾' in mes:
+        #    print 'jian1'
+        # if u'丢' in mes or u'掉' in mes:
+        #    print 'shi2'
+        l = list(jieba.cut(mes))  # ,cut_all=True)
+        # print l
+        if u'天气' in l:
+            #print "find tianqi"
+            for i in l:
+                #print i
+                if self.sq.findcity(i):
+                    return cityweather.findcity(i.encode('utf-8'))
+        #print "city find fail"
         for i in l:
+            #print i
             if len(i) == 1:
                 continue
             t = self.sq.find(i)
             if t != 0:
                 return t
         # print mes
+        # print "fail"
         return self.hj.chat(mes)
 
 

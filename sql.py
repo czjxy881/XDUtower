@@ -91,6 +91,17 @@ class Sql:
         t = self.cur.fetchone()
         return t[1] if t != None else 0
 
+    def findcity(self, cityname):
+        if self.con == 0:
+            self.__init__()
+        self.cur.execute("select city from citydb where city='%s'" % cityname)
+        result = self.cur.fetchone()
+        #print "db: "+ result
+        if result == None:
+            return False
+        else:
+            return True
+
 if __name__ == "__main__":
     a = Sql()
     del a

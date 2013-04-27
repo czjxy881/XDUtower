@@ -475,8 +475,7 @@ class Renren():
             print 'jian1'
         if u'丢' in mes or u'掉' in mes:
             print 'shi2'
-        l = jieba.cut(mes)  # ,cut_all=True)
-        # print l
+        l = jieba.cut(mes)
         for i in l:
             if len(i) == 1:
                 continue

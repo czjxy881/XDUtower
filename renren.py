@@ -475,11 +475,11 @@ class Renren():
         #    print 'shi2'
         l = jieba.cut(mes)  # ,cut_all=True)
         # print l
-    if findcity(encoded_args):
-        if u'天气' in l:
-            for i in l:
-                if len(i) >= 1 and self.sq.findcity(i):
-                    return  cityweather.findcity(i) 
+        if findcity(encoded_args):
+            if u'天气' in l:
+                for i in l:
+                    if len(i) >= 1 and self.sq.findcity(i):
+                        return  cityweather.findcity(i) 
         for i in l:
             if len(i) == 1:
                 continue
